@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.slider {
+    position: relative;
+    width: 80%;
+    max-width: 700px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slides">
+            <img src="is3.jpg" alt="Image 1">
+            <img src="is4.webp" alt="Image 2">
+            <img src="is1.jpg" alt="Image 3">
+            <img src="is2.jpg" alt="Image 4">
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <script>
+        let slideIndex = 0;
+const slides = document.querySelector('.slides');
+const totalSlides = slides.children.length;
+
+function showSlide(index) {
+    slides.style.transform = `translateX(${-index * 100}%)`;
+}
+
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    showSlide(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+    showSlide(slideIndex);
+}
+
+showSlide(slideIndex);
+
+    </script>
+</body>
+</html>
